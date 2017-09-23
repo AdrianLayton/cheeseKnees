@@ -1,0 +1,80 @@
+* {
+	box-sizing: border-box;
+	background-color: #F9F9F9;
+}
+
+nav.main-nav {
+	width: 70%;
+	margin-left: 15%;
+	margin-top: 1em;
+	margin-bottom: .5em;
+	display: block;
+	clear: both;
+}
+
+.nav-logo {
+	max-width: 6.5em;
+	max-height: 6.5em;
+	display: inline-block;
+	margin-left: 4em;
+	margin-top: 1em;
+}
+
+ul.nav-list {
+	padding-left: 14.5%;
+	padding-bottom: 1em;
+	width: 65%;
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+hr.divide {
+	width: 70%;
+	margin: 0 auto;
+}
+
+li.nav-item {
+	margin-left: 2em;
+	margin-right: 2em;
+	padding-bottom: 0em;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1.5em;
+	font-weight: bold;
+	font-family: 'Libre Barcode 39 Text', cursive;
+
+}
+
+img.knife-left {
+	max-width: 7%;
+	margin-left: 3%;
+	position: relative;
+	float: left;
+	height: 30em;
+}
+
+img.knife-right {
+	margin-right: 3%;
+	max-width: 7%;
+	position: relative;
+	float: right;
+	height: 30em;
+}
+
+div.main-section {
+	color: #C1C1C1;
+	width: 45%;
+	margin-bottom: 5em;
+
+}
+
+footer.footer {
+	clear: both;
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+	position: center;
+	background-color: #585858; 
+	height: 7em;
+	border-radius: .55em .55em 0em 0em;
+}
