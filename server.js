@@ -1,8 +1,8 @@
 const express = require ('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const AWS = require('aws-sdk');
 const app = express();
-const mongoose = require('mongoose');
 
  
 
@@ -12,22 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// SCHEMA SETUP
-const EmailSchema = new mongoose.Schema({
-	name: String,
-	email: String
-});
-
-const db = mongoose.connect("mongodb://127.0.0.1/emailList",function(err) {
-	if(err) {throw err}
-	else {
-		console.log("emailList database has been connected");
-	}
-});
-
-const emailDb = db.collection
-
-const emailList = mongoose.model("emailList", EmailSchema);
 
 app.get('/', (req,res) => {
 	res.sendFile(path.resolve(__dirname + '/static/index.html' ));
@@ -69,7 +53,27 @@ app.post('/about', (req,res) => {
 		}
 	})
 })
-// res.redirect("/");
-app.listen(3000,() => {
+
+app.listen(4000,() => {
 	console.log('App has started on port 3000')
 });
+
+
+
+// // SCHEMA SETUP
+// const EmailSchema = new mongoose.Schema({
+// 	name: String,
+// 	email: String
+// });
+
+// const db = mongoose.connect("mongodb://127.0.0.1/emailList",function(err) {
+// 	if(err) {throw err}
+// 	else {
+// 		console.log("emailList database has been connected");
+// 	}
+// });
+
+// const emailDb = db.collection
+
+// const emailList = mongoose.model("emailList", EmailSchema);
+
