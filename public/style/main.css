@@ -25,7 +25,6 @@ nav.main-nav {
 	display: block;
 	clear: both;
 	background-color: inherit;
-
 }
 
 
@@ -77,7 +76,7 @@ hr.divide {
 
 /************ KNIVES *****************/
 
-/*img.knife-left {
+img.knife-left {
 	top: 18em;
 	max-width: 11%;
 	position: relative;
@@ -87,8 +86,8 @@ hr.divide {
 	margin-left: 1%;
 	opacity: 0.02;
 }
-*/
 
+/*
 img.knife-left {
 	top: 2em;
 	max-width: 50%;
@@ -98,7 +97,7 @@ img.knife-left {
 	z-index: 1;
 	margin-left: 1%;
 	opacity: 0.02;
-}
+}*/
 
 img.knife-right {
 	top: 14.5em;
@@ -113,7 +112,7 @@ img.knife-right {
 }
 
 /*ORIGINIAL LEFT REVEAL*/
-/*
+
 img.knife-left-reveal {
 	top: 18em;
 	max-width: 11%;
@@ -127,7 +126,7 @@ img.knife-left-reveal {
 	animation-duration: 800ms;
 	animation-duration: ease-in;
 	transform: rotate(10deg);
-}*/
+}
 
 /*MADE MISTAKE WAS SUPPOSED TO BE RIGHT KNIFE , BUT USED LEFT KNIFE WAS NOW CHANGE TO RIGHT*/
 img.knife-right-reveal {
@@ -142,10 +141,10 @@ img.knife-right-reveal {
 	animation-name: fadeKnife;
 	animation-duration: 800ms;
 	animation-duration: ease-in;
-	transform: rotate(-75deg);
+	transform: rotate(10deg);
 }
 
-img.knife-left-reveal {
+/*img.knife-left-reveal {
 	top: 4.5em;
 	height: 50em;
 	width: 20em;
@@ -160,14 +159,14 @@ img.knife-left-reveal {
 	animation-duration: ease-in;
 	transform: rotate(-75deg);
 }
-
+*/
 
 /****************** ART SECTION ************************/
 
 div.main-section {
 	color: #C1C1C1;
-	width: 55%;
-	margin: 7.5em 10.5% 2.5em 10.5%;
+	width: 40%;
+	margin: 2.5em 4.5% 2.5em 4.5%;
 	display: inline-block;
 	background-color: inherit;
 }
@@ -325,9 +324,23 @@ form#contact_form {
 
 }
 
+.form-title {
+	color: rgb(50,50,50);
+	background-color: inherit;
+	padding: 1.1em .25em 0em .25em;
+	font-size: 1.4em;
+}
+
 div.row {
 	background-color: inherit;
 	padding-top: 1em;
+	display: block;
+}
+
+div.row label.required {
+	padding: 1em;
+	background-color: inherit;
+	font-size: .8em;
 }
 
 /******************************** FOOTER ********************************/
@@ -510,6 +523,14 @@ div.created-by {
 /******************* MEDIA QUERIES *******************/
 
 @media (min-width: 300px) and (max-width: 450px) {
+	body {
+		background: linear-gradient( 180deg, rgb(130,130,130), rgb(185,185,185) 3%,rgb(245,245,245) 8% );
+	}
+
+	section.art-section {
+		margin-top: -2em;
+	}
+
 	ul.nav-list > a {
 		text-decoration: none;
 	}
@@ -574,16 +595,17 @@ div.created-by {
 	}
 
 	img.knife-right-reveal {
-		transform: rotate(90deg); 
-		float: bottom;
-		width: 100%;
-		display: none;
+		transform: rotate(-76deg); 
+		width: 32%;
+		height: 19em;
+		margin: 0 34%;
+
 
 	}
 	img.knife-left-reveal {
 		transform: rotate(90deg);
 		float: bottom;
 		width: 100%;
-		display: none;
+		margin: 0 34%;
 	}
 }

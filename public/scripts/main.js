@@ -15,7 +15,7 @@ function toggleTitle() {
 }
 
 function revealKnives() {
-	if (window.innerWidth > 800) {
+	// if (window.innerWidth > 800) {
 	var lftKnife = document.getElementsByClassName("knife-left")[0];
 	var rgtKnife = document.getElementsByClassName("knife-right")[0];
 	lftKnife.classList.toggle("knife-left");
@@ -23,10 +23,10 @@ function revealKnives() {
 	
 	rgtKnife.classList.toggle("knife-right");
 	rgtKnife.classList.toggle("knife-right-reveal");
-}
-	else {
-		removeKnives();
-	}
+// }
+	// else {
+	// 	removeKnives();
+	// }
 
 }
 

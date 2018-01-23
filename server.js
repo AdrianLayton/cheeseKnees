@@ -1,6 +1,7 @@
 const express = require ('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const request = require('superagent');
 const AWS = require('aws-sdk');
 const app = express();
 
@@ -41,10 +42,6 @@ app.get('/about', (req,res) => {
 })
 
 app.get('/confirm', (req,res) => {
-	let user = {
-		email: "adrianlayton@gmail.com",
-		name: "Adrian Layton"
-	}
 	res.render("confirm",{user: user});
 })
 
@@ -53,8 +50,11 @@ app.get('/contact', (req,res) => {
 })
 
 app.post('*', (req,res) => {
+	let mailChimpApiKey = null;
+	let mailChimpInstance = us17;
+	let listUniqueId = null;
 	let table = "testDb";
-	let name = req.body.name;
+	let fName = req.body.name;
 	let email = req.body.email;
 	let user = {email: email, name: name};
 	dbFunc.makeParams(user, table);
@@ -75,7 +75,26 @@ app.post('*', (req,res) => {
 	        console.log("Added item:", JSON.stringify(data, null, 2));
 		}
 })
-	res.render("confirm");
+	request
+        .post('https://' + mailChimpInstance + '.api.mailChimp.com/3.0/lists/' + listUniqueId + '/members/')
+        .set('Content-Type', 'application/json;charset=utf-8')
+        .set('Authorization', 'Basic ' + new Buffer('any:' + mailChimpApiKey ).toString('base64'))
+        .send({
+          'email_address': email,
+          'status': 'subscribed',
+          'merge_fields': {
+            'fname': firstName,
+          }
+        })
+            .end(function(err, response) {
+              if (response.status < 300 || (response.status === 400 && response.body.title === 'Member Exists')) {
+                res.send('Signed Up!');
+              } else {
+                res.send('Sign Up Failed :(');
+              }
+    });
+	user = {email: email, name: fName}
+	res.render("confirm",{user});
 })
 
 
