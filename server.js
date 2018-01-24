@@ -54,7 +54,7 @@ app.post('/', (req,res) => {
 	let mailChimpInstance = us17;
 	let listUniqueId = null;
 	let table = "testDb";
-	let fName = req.body.name;
+	let name = req.body.name;
 	let email = req.body.email;
 	let user = {email: email, name: name};
 	dbFunc.makeParams(user, table);
@@ -86,7 +86,6 @@ app.post('/', (req,res) => {
                 res.send('Sign Up Failed :(');
               }
     });
-	user = {email: email, name: fName}
 	res.render("confirm",{user});
 })
 
