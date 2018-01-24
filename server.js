@@ -51,17 +51,17 @@ app.get('/contact', (req,res) => {
 
 app.post('/', (req,res) => {
 	let mailChimpApiKey = null;
-	let mailChimpInstance = us17;
+	let mailChimpInstance = "us17";
 	let listUniqueId = null;
-	let table = "testDb";
+	let table = "Art-Email";
 	let name = req.body.name;
 	let email = req.body.email;
 	let user = {email: email, name: name};
-	dbFunc.makeParams(user, table);
+	
 
 	console.log("Adding a new item...");
 
-	docClient.put(params, function(err, data) {
+	docClient.put(dbFunc.makeParams(user, table), function(err, data) {
 	    if (err) {
 	        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
 	    } else {
@@ -76,7 +76,7 @@ app.post('/', (req,res) => {
           'email_address': email,
           'status': 'subscribed',
           'merge_fields': {
-            'fname': firstName,
+            'name': name,
           }
         })
             .end(function(err, response) {
