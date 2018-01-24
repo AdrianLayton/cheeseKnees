@@ -390,7 +390,7 @@ div#social-media {
 }
 
 div#sign-up {
-	left: 34%;
+	left: 32%;
 }
 
 div#site-map {
@@ -440,8 +440,10 @@ form.sign-up {
 }
 
 form.sign-up input {
-	margin: 0.5em auto;
+	margin: 0 auto .75em;
 	color: rgb(35,35,35);
+	display: block;
+	padding: .35em;
 }
 
 h5#form-header {
