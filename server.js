@@ -49,7 +49,7 @@ app.get('/contact', (req,res) => {
 	res.render("contact");
 })
 
-app.post('*', (req,res) => {
+app.post('/', (req,res) => {
 	let mailChimpApiKey = null;
 	let mailChimpInstance = us17;
 	let listUniqueId = null;
@@ -58,13 +58,6 @@ app.post('*', (req,res) => {
 	let email = req.body.email;
 	let user = {email: email, name: name};
 	dbFunc.makeParams(user, table);
-	// let params = {
-	// 	TableName:table,
-	// 	Item:{	
-	// 		"email": email,
-	// 		"name": name
-	// 		}
-	// 	}
 
 	console.log("Adding a new item...");
 
