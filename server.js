@@ -52,7 +52,7 @@ app.get('/contact', (req,res) => {
 app.post('/', (req,res) => {
 	let mailChimpApiKey = null;
 	let mailChimpInstance = "us17";
-	let listUniqueId = null;
+	let listUniqueId = "baa4a9093b";
 	let table = "Art-Email";
 	let name = req.body.name;
 	let email = req.body.email;
@@ -61,13 +61,6 @@ app.post('/', (req,res) => {
 
 	console.log("Adding a new item...");
 
-	docClient.put(dbFunc.makeParams(user, table), function(err, data) {
-	    if (err) {
-	        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
-	    } else {
-	        console.log("Added item:", JSON.stringify(data, null, 2));
-		}
-})
 	request
         .post('https://' + mailChimpInstance + '.api.mailChimp.com/3.0/lists/' + listUniqueId + '/members/')
         .set('Content-Type', 'application/json;charset=utf-8')
@@ -86,6 +79,14 @@ app.post('/', (req,res) => {
                 res.send('Sign Up Failed :(');
               }
     });
+            
+	docClient.put(dbFunc.makeParams(user, table), function(err, data) {
+	    if (err) {
+	        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+	    } else {
+	        console.log("Added item:", JSON.stringify(data, null, 2));
+		}
+})
 	res.render("confirm",{user});
 })
 
