@@ -59,7 +59,7 @@ app.post('/', (req,res) => {
     const user = {email: email, name: name};
     
 
-    console.log("Adding a new item... to emai list");
+    console.log("Adding a new item... to emaillist");
 
     request
         .post('https://' + mailChimpInstance + '.api.mailChimp.com/3.0/lists/' + listUniqueId + '/members/')
@@ -79,13 +79,13 @@ app.post('/', (req,res) => {
                 console.log('Sign Up Failed :(');
               }
     });
-		docClient.put(dbFunc.makeParams(user, table), function(err, data) {
-	    if (err) {
-	        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
-	    } else {
-	        console.log("Added item:", JSON.stringify(data, null, 2));
-		}
-		});
+		// docClient.put(dbFunc.makeParams(user, table), function(err, data) {
+	 //    if (err) {
+	 //        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+	 //    } else {
+	 //        console.log("Added item:", JSON.stringify(data, null, 2));
+		// }
+		// });
     
 	res.render("confirm",{user});
 })
