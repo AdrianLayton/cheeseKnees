@@ -76,7 +76,7 @@ app.post('/', (req,res) => {
               if (response.status < 300 || (response.status === 400 && response.body.title === 'Member Exists')) {
                 console.log('Signed Up!');
               } else {
-                console.log('Sign Up Failed :(');
+                console.log(err);
               }
     });
 		// docClient.put(dbFunc.makeParams(user, table), function(err, data) {
