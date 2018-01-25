@@ -87,7 +87,9 @@ app.post('/', (req,res) => {
 	        console.log("Added item:", JSON.stringify(data, null, 2));
 		}
 		})
-		.catch(err => console.log(err));
+		.catch(function(err) {
+			console.log(err);
+		};
 	);
     
 	res.render("confirm",{user});
