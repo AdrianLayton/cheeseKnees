@@ -7,7 +7,7 @@ module.exports = {
 			TableName: table,
 			Item: {
 			Email: emailEntry,
-			Name: name
+			Name: nameEntry
 		}
 		}
 		return params;
