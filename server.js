@@ -50,47 +50,42 @@ app.get('/contact', (req,res) => {
 })
 
 app.post('/', (req,res) => {
-	const mailChimpApiKey = null;
-	const mailChimpInstance = "us17";
-	const listUniqueId = "baa4a9093b";
-	const table = "Art-Email";
-	const name = req.body.name;
-	const email = req.body.email;
-	const user = {email: email, name: name};
-	
+    const mailChimpApiKey = null;
+    const mailChimpInstance = "us17";
+    const listUniqueId = "baa4a9093b";
+    const table = "Art-Email";
+    const name = req.body.name;
+    const email = req.body.email;
+    const user = {email: email, name: name};
+    
 
-	console.log("Adding a new item...");
+    console.log("Adding a new item... to emai list");
 
-	request
-		.post('https://' + mailChimpInstance + '.api.mailChimp.com/3.0/lists/' + listUniqueId + '/members/')
+    request
+        .post('https://' + mailChimpInstance + '.api.mailChimp.com/3.0/lists/' + listUniqueId + '/members/')
         .set('Content-Type', 'application/json;charset=utf-8')
         .set('Authorization', 'Basic ' + new Buffer('any:' + mailChimpApiKey ).toString('base64'))
         .send({
           'email_address': email,
-          'status': 'pending',
+          'status': 'subscribed',
           'merge_fields': {
             'name': name,
           }
         })
-		.then(function(err, response) {
-		  if (response.status < 300 || (response.status === 400 && response.body.title === 'Member Exists')) {
-		    console.log('Signed Up!');
-		  } else {
-		    console.log('Sign Up Failed :(');
-		  }
-	})
-		.then(
+            .end(function(err, response) {
+              if (response.status < 300 || (response.status === 400 && response.body.title === 'Member Exists')) {
+                console.log('Signed Up!');
+              } else {
+                console.log('Sign Up Failed :(');
+              }
+    });
 		docClient.put(dbFunc.makeParams(user, table), function(err, data) {
 	    if (err) {
 	        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
 	    } else {
 	        console.log("Added item:", JSON.stringify(data, null, 2));
 		}
-		})
-		.catch(function(err) {
-			console.log(err);
-		};
-	);
+		});
     
 	res.render("confirm",{user});
 })
