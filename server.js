@@ -62,9 +62,9 @@ app.post('/', (req,res) => {
 	console.log("Adding a new item...");
 
 	request
+		.post('https://' + mailChimpInstance + '.api.mailChimp.com/3.0/lists/' + listUniqueId + '/members/')
         .set('Content-Type', 'application/json;charset=utf-8')
         .set('Authorization', 'Basic ' + new Buffer('any:' + mailChimpApiKey ).toString('base64'))
-        .post('https://' + mailChimpInstance + '.api.mailChimp.com/3.0/lists/' + listUniqueId + '/members/')
         .send({
           'email_address': email,
           'status': 'pending',
