@@ -50,36 +50,36 @@ app.get('/contact', (req,res) => {
 })
 
 app.post('/', (req,res) => {
-	let mailChimpApiKey = null;
-	let mailChimpInstance = "us17";
-	let listUniqueId = "baa4a9093b";
-	let table = "Art-Email";
-	let name = req.body.name;
-	let email = req.body.email;
-	let user = {email: email, name: name};
+	const mailChimpApiKey = null;
+	const mailChimpInstance = "us17";
+	const listUniqueId = "baa4a9093b";
+	const table = "Art-Email";
+	const name = req.body.name;
+	const email = req.body.email;
+	const user = {email: email, name: name};
 	
 
 	console.log("Adding a new item...");
 
 	request
-        .post('https://' + mailChimpInstance + '.api.mailChimp.com/3.0/lists/' + listUniqueId + '/members/')
         .set('Content-Type', 'application/json;charset=utf-8')
         .set('Authorization', 'Basic ' + new Buffer('any:' + mailChimpApiKey ).toString('base64'))
+        .post('https://' + mailChimpInstance + '.api.mailChimp.com/3.0/lists/' + listUniqueId + '/members/')
         .send({
           'email_address': email,
-          'status': 'subscribed',
+          'status': 'pending',
           'merge_fields': {
             'name': name,
           }
         })
-            .end(function(err, response) {
-              if (response.status < 300 || (response.status === 400 && response.body.title === 'Member Exists')) {
-                res.send('Signed Up!');
-              } else {
-                res.send('Sign Up Failed :(');
-              }
-    });
-            
+        .end(function(err, response) {
+          if (response.status < 300 || (response.status === 400 && response.body.title === 'Member Exists')) {
+            console.log('Signed Up!');
+          } else {
+            console.log('Sign Up Failed :(');
+          }
+    }).then();
+
 	docClient.put(dbFunc.makeParams(user, table), function(err, data) {
 	    if (err) {
 	        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
