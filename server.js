@@ -72,21 +72,23 @@ app.post('/', (req,res) => {
             'name': name,
           }
         })
-        .end(function(err, response) {
-          if (response.status < 300 || (response.status === 400 && response.body.title === 'Member Exists')) {
-            console.log('Signed Up!');
-          } else {
-            console.log('Sign Up Failed :(');
-          }
-    }).then(
-    	docClient.put(dbFunc.makeParams(user, table), function(err, data) {
+		.then(function(err, response) {
+		  if (response.status < 300 || (response.status === 400 && response.body.title === 'Member Exists')) {
+		    console.log('Signed Up!');
+		  } else {
+		    console.log('Sign Up Failed :(');
+		  }
+	})
+		.then(
+		docClient.put(dbFunc.makeParams(user, table), function(err, data) {
 	    if (err) {
 	        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
 	    } else {
 	        console.log("Added item:", JSON.stringify(data, null, 2));
 		}
 		})
-    );
+		.catch(err => console.log(err));
+	);
     
 	res.render("confirm",{user});
 })
