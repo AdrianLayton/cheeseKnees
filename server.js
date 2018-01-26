@@ -66,10 +66,10 @@ app.post('/', (req,res) => {
         .set('Content-Type', 'application/json;charset=utf-8')
         .set('Authorization', 'Basic ' + new Buffer('any:' + mailChimpApiKey ).toString('base64'))
         .send({
-          'email_address': email,
+          'email_address': user.email,
           'status': 'subscribed',
           'merge_fields': {
-            'name': name,
+            'name': user.name,
           }
         })
             .end(function(err, response) {
